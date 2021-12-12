@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="kasir">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/kasir.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
