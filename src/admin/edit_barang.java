@@ -460,7 +460,7 @@ public class edit_barang extends javax.swing.JFrame {
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         // TODO add your handling code here:
         if (kd_bar.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "pilih dahulu data yang ingin diubah");
+            JOptionPane.showMessageDialog(this, "pilih dahulu barang yang ingin diubah");
         } else {
  try {
             String e = harga_jual.getText().replaceAll(",","");

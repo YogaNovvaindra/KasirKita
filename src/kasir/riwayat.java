@@ -74,6 +74,8 @@ public class riwayat extends javax.swing.JFrame {
         Tampilkan = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         print = new javax.swing.JButton();
+        datedari = new com.toedter.calendar.JDateChooser();
+        datesampai = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
         no_trans = new javax.swing.JTextField();
 
@@ -299,13 +301,13 @@ public class riwayat extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(72, 72, 72));
         jLabel16.setText("Hingga");
         jPanel2.add(jLabel16);
-        jLabel16.setBounds(300, 620, 70, 30);
+        jLabel16.setBounds(300, 610, 70, 40);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(72, 72, 72));
         jLabel15.setText("Dari");
         jPanel2.add(jLabel15);
-        jLabel15.setBounds(300, 560, 70, 30);
+        jLabel15.setBounds(300, 560, 70, 40);
 
         Tampilkan.setBackground(new java.awt.Color(255, 255, 255));
         Tampilkan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -349,6 +351,24 @@ public class riwayat extends javax.swing.JFrame {
         });
         jPanel2.add(print);
         print.setBounds(710, 560, 110, 90);
+
+        datedari.setBackground(new java.awt.Color(255, 255, 255));
+        datedari.setForeground(new java.awt.Color(72, 72, 72));
+        datedari.setDateFormatString("yyyy-MM-dd");
+        datedari.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        datedari.setOpaque(false);
+        jPanel2.add(datedari);
+        datedari.setBounds(370, 560, 160, 40);
+        datedari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        datesampai.setBackground(new java.awt.Color(255, 255, 255));
+        datesampai.setForeground(new java.awt.Color(72, 72, 72));
+        datesampai.setDateFormatString("yyyy-MM-dd");
+        datesampai.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        datesampai.setOpaque(false);
+        jPanel2.add(datesampai);
+        datesampai.setBounds(370, 610, 160, 40);
+        datesampai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/riwayat.png"))); // NOI18N
         jPanel2.add(jLabel1);
@@ -779,6 +799,8 @@ private void load_table1() {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Tampilkan;
     private javax.swing.JButton btn_delete;
+    private com.toedter.calendar.JDateChooser datedari;
+    private com.toedter.calendar.JDateChooser datesampai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;

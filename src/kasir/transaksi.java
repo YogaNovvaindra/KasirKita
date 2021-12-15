@@ -725,6 +725,7 @@ public class transaksi extends javax.swing.JFrame {
         }
         load_table1();
         tablestyle1();
+        grand_total();
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
 

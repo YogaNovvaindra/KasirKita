@@ -445,7 +445,7 @@ public class edit_user extends javax.swing.JFrame {
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         // TODO add your handling code here:
         if (txtnama.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "pilih dahulu data yang ingin diubah");
+            JOptionPane.showMessageDialog(this, "pilih dahulu User yang ingin diubah");
         } else {
             String hp=txthp.getText();
         if (hp.matches("^[0-9]*") && hp.length()==12){

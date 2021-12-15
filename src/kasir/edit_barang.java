@@ -470,6 +470,9 @@ public class edit_barang extends javax.swing.JFrame {
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
         // TODO add your handling code here:
+        if (kd_bar.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "pilih dahulu barang yang ingin diubah");
+        } else {
         try {
             String e = harga_jual.getText().replaceAll(",","");
             Double f = Double.parseDouble(e);
@@ -492,6 +495,7 @@ public class edit_barang extends javax.swing.JFrame {
         }
         load_table();
         kosong();
+        }
     }//GEN-LAST:event_btn_editActionPerformed
 
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
