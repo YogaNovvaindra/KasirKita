@@ -5,12 +5,12 @@
  */
 package admin;
 
+import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
-import kasir.*;
 import login.Config;
 
 /**
@@ -64,7 +64,9 @@ public class edit_supplier extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KasirKita ~ Edit Supplier");
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel2.setLayout(null);
@@ -89,6 +91,11 @@ public class edit_supplier extends javax.swing.JFrame {
         txthp.setForeground(new java.awt.Color(36, 36, 36));
         txthp.setBorder(null);
         txthp.setOpaque(false);
+        txthp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txthpKeyReleased(evt);
+            }
+        });
         jPanel2.add(txthp);
         txthp.setBounds(440, 290, 240, 30);
 
@@ -166,6 +173,11 @@ public class edit_supplier extends javax.swing.JFrame {
         txtuser.setForeground(new java.awt.Color(36, 36, 36));
         txtuser.setBorder(null);
         txtuser.setOpaque(false);
+        txtuser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtuserKeyReleased(evt);
+            }
+        });
         jPanel2.add(txtuser);
         txtuser.setBounds(440, 140, 240, 30);
 
@@ -299,6 +311,7 @@ public class edit_supplier extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
@@ -311,7 +324,7 @@ public class edit_supplier extends javax.swing.JFrame {
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this, "berhasil di hapus");
+            JOptionPane.showMessageDialog(this, "Data Supplier dengan ID "+txtuser.getText()+" berhasil dihapus");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -324,7 +337,10 @@ public class edit_supplier extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (txtuser.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Masukkan ID Supplier terlebih dahulu");
-        } else {
+        } else { 
+            String hp=txthp.getText();
+        if (hp.matches("^[0-9]*") && hp.length()==12){
+        
         try {
             String sql = "INSERT INTO supplier VALUES ('"+txtuser.getText()+"','"
                      +txtnama.getText()+"','"+txtalamat.getText()+"','"+
@@ -332,12 +348,15 @@ public class edit_supplier extends javax.swing.JFrame {
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+            JOptionPane.showMessageDialog(null, "Data Supplier dengan ID "+txtuser.getText()+" berhasil disimpan");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         } 
         load_table();
         kosong();
+        } else {
+            JOptionPane.showMessageDialog(null, "Nomor Telepon salah");
+        }
         }
     }//GEN-LAST:event_btn_tambahActionPerformed
 
@@ -356,8 +375,13 @@ public class edit_supplier extends javax.swing.JFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-//        this.setVisible(false);
-        new login.logout().setVisible(true);
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            new login.login().setVisible(true);
+        } else if (response == JOptionPane.NO_OPTION) {
+            
+        }
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
@@ -397,7 +421,7 @@ public class edit_supplier extends javax.swing.JFrame {
     
     try {
         int no=1;
-        String sql = "SELECT* from supplier where nama_supplier like '%" + txtcari.getText() + "%'"  ;
+        String sql = "SELECT * from supplier where nama_supplier like '%" + txtcari.getText() + "%'"  ;
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
         java.sql.ResultSet res=stm.executeQuery(sql);
@@ -417,7 +441,9 @@ public class edit_supplier extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (txtuser.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "pilih dahulu data yang ingin diubah");
-        } else {
+        } else { 
+            String hp=txthp.getText();
+        if (hp.matches("^[0-9]*") && hp.length()==12){
         try {
             String sql ="UPDATE supplier "
             + "SET nama_supplier = '"+txtnama.getText()+"', alamat_supplier = '"
@@ -427,12 +453,15 @@ public class edit_supplier extends javax.swing.JFrame {
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+            JOptionPane.showMessageDialog(null, "Data Supplier dengan ID "+txtuser.getText()+" berhasil diubah");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Perubahan Data gagal " +e.getMessage());
         }
         load_table();
         kosong();
+        } else {
+            JOptionPane.showMessageDialog(null, "Nomor Telepon salah");
+        }
         }
     }//GEN-LAST:event_btn_editActionPerformed
 
@@ -487,6 +516,15 @@ public class edit_supplier extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_txtcariActionPerformed
 
+    private void txthpKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txthpKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txthpKeyReleased
+
+    private void txtuserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtuserKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtuserKeyReleased
+
     private void tablestyle() {
         JTableHeader style = jTable1.getTableHeader();
         jTable1.setRowHeight(25);
@@ -513,7 +551,7 @@ public class edit_supplier extends javax.swing.JFrame {
     
     try {
         int no=1;
-        String sql = "SELECT* from supplier;";
+        String sql = "SELECT * from supplier;";
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
         java.sql.ResultSet res=stm.executeQuery(sql);
@@ -535,6 +573,7 @@ public class edit_supplier extends javax.swing.JFrame {
     txtnama.setText(null);
     txtalamat.setText(null);
     txthp.setText(null);
+    txtcari.setText(null);
     }
     /**
      * @param args the command line arguments

@@ -31,6 +31,7 @@ public class Statistik extends javax.swing.JFrame {
     public Statistik() {
         initComponents();
         load_table();
+        txtcaritrans.setVisible(false);
     }
 
     /**
@@ -66,7 +67,8 @@ public class Statistik extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        txtcari = new javax.swing.JTextField();
+        txtcaritrans = new javax.swing.JTextField();
+        txtcaribrg = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -75,7 +77,9 @@ public class Statistik extends javax.swing.JFrame {
         kd_bar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KasirKita ~ Statistik");
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel2.setLayout(null);
@@ -313,18 +317,31 @@ public class Statistik extends javax.swing.JFrame {
         jPanel2.add(jLabel7);
         jLabel7.setBounds(830, 140, 30, 30);
 
-        txtcari.setBackground(new java.awt.Color(236, 236, 236));
-        txtcari.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtcari.setForeground(new java.awt.Color(36, 36, 36));
-        txtcari.setBorder(null);
-        txtcari.setOpaque(false);
-        txtcari.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtcaritrans.setBackground(new java.awt.Color(236, 236, 236));
+        txtcaritrans.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtcaritrans.setForeground(new java.awt.Color(36, 36, 36));
+        txtcaritrans.setBorder(null);
+        txtcaritrans.setOpaque(false);
+        txtcaritrans.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtcariKeyPressed(evt);
+                txtcaritransKeyPressed(evt);
             }
         });
-        jPanel2.add(txtcari);
-        txtcari.setBounds(580, 140, 250, 30);
+        jPanel2.add(txtcaritrans);
+        txtcaritrans.setBounds(580, 140, 250, 30);
+
+        txtcaribrg.setBackground(new java.awt.Color(236, 236, 236));
+        txtcaribrg.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtcaribrg.setForeground(new java.awt.Color(36, 36, 36));
+        txtcaribrg.setBorder(null);
+        txtcaribrg.setOpaque(false);
+        txtcaribrg.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtcaribrgKeyPressed(evt);
+            }
+        });
+        jPanel2.add(txtcaribrg);
+        txtcaribrg.setBounds(580, 140, 250, 30);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/transaksibg.png"))); // NOI18N
         jPanel2.add(jLabel3);
@@ -360,6 +377,7 @@ public class Statistik extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -374,7 +392,13 @@ public class Statistik extends javax.swing.JFrame {
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
 //        this.setVisible(false);
-        new login.logout().setVisible(true);
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            new login.login().setVisible(true);
+        } else if (response == JOptionPane.NO_OPTION) {
+            
+        }
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
@@ -404,7 +428,7 @@ public class Statistik extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel18MouseClicked
 
-    private void txtcariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcariKeyPressed
+    private void txtcaribrgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcaribrgKeyPressed
         // TODO add your handling code here:
         DefaultTableModel model = new DefaultTableModel();
     
@@ -421,7 +445,7 @@ public class Statistik extends javax.swing.JFrame {
     try {
         int no=1;
         String sql = "SELECT * from barang join supplier on barang.id_sup = supplier.id_supplier "
-                + "where nama_barang like '%" + txtcari.getText() + "%'"  ;
+                + "where nama_barang like '%" + txtcaribrg.getText() + "%'"  ;
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
         java.sql.ResultSet res=stm.executeQuery(sql);
@@ -438,7 +462,7 @@ public class Statistik extends javax.swing.JFrame {
         
     }
     tablestyle();
-    }//GEN-LAST:event_txtcariKeyPressed
+    }//GEN-LAST:event_txtcaribrgKeyPressed
 
     private void namakasirAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_namakasirAncestorAdded
         // TODO add your handling code here:
@@ -542,21 +566,29 @@ public class Statistik extends javax.swing.JFrame {
         
     }
     tablestyle();
+    txtcaribrg.setVisible(true);
+    txtcaritrans.setVisible(false);
     }//GEN-LAST:event_tipisjmlMouseClicked
 
     private void barangjmlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_barangjmlMouseClicked
         // TODO add your handling code here:
         load_table();
+        txtcaribrg.setVisible(true);
+        txtcaritrans.setVisible(false);
     }//GEN-LAST:event_barangjmlMouseClicked
 
     private void transjmlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_transjmlMouseClicked
         // TODO add your handling code here:
     load_table1();
+    txtcaribrg.setVisible(false);
+    txtcaritrans.setVisible(true);
     }//GEN-LAST:event_transjmlMouseClicked
 
     private void uangjmlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_uangjmlMouseClicked
         // TODO add your handling code here:
         load_table1();
+        txtcaribrg.setVisible(false);
+        txtcaritrans.setVisible(true);
     }//GEN-LAST:event_uangjmlMouseClicked
 
     private void btn_phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_phoneActionPerformed
@@ -588,6 +620,43 @@ public class Statistik extends javax.swing.JFrame {
         String id = jTable1.getValueAt(baris, 1).toString();
         kd_bar.setText(id);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void txtcaritransKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcaritransKeyPressed
+        // TODO add your handling code here:
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime tanggal = LocalDateTime.now();
+        String a = (dtf.format(tanggal));
+        DefaultTableModel model = new DefaultTableModel();
+    
+    model.addColumn("No");
+    model.addColumn("No. Transaksi");
+    model.addColumn("Tanggal");
+    model.addColumn("Jam");
+    model.addColumn("Total Bayar");
+    model.addColumn("Kasir");
+    model.addColumn("Pelanggan");
+
+    
+    try {
+        int no=1;
+        String sql = "SELECT * from tranksaksi "
+                + "where tanggal_tranksaksi='"+a+"' && id_tranksaksi LIKE '%"+txtcaritrans.getText()+"%' ;";
+        java.sql.Connection conn=(Connection)Config.configDB();
+        java.sql.Statement stm=conn.createStatement();
+        java.sql.ResultSet res=stm.executeQuery(sql);
+        while(res.next()){
+            model.addRow (new Object[] {no++,res.getString(1),
+                res.getString(2),res.getString(3), this.formatRupiah(res.getInt(4)).replace(",00", ""),
+                res.getString(7),res.getString(8)
+            });
+        }
+        jTable1.setModel(model);
+    } catch (Exception e) {
+        
+    }
+    tablestyle1();
+    btn_phone.setVisible(false);
+    }//GEN-LAST:event_txtcaritransKeyPressed
     private void tablestyle() {
         JTableHeader style = jTable1.getTableHeader();
         jTable1.setRowHeight(25);
@@ -768,7 +837,8 @@ public class Statistik extends javax.swing.JFrame {
     public javax.swing.JLabel namakasir;
     private javax.swing.JLabel tipisjml;
     private javax.swing.JLabel transjml;
-    private javax.swing.JTextField txtcari;
+    private javax.swing.JTextField txtcaribrg;
+    private javax.swing.JTextField txtcaritrans;
     private javax.swing.JLabel uangjml;
     // End of variables declaration//GEN-END:variables
 }

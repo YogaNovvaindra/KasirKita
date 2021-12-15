@@ -1,5 +1,5 @@
 package login;
-
+import kasir.*;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -39,6 +39,7 @@ public class logout extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setIconImages(null);
         setLocation(new java.awt.Point(500, 250));
+        setResizable(false);
         setType(java.awt.Window.Type.POPUP);
 
         jPanel1.setBackground(new java.awt.Color(210, 230, 252));
@@ -127,6 +128,7 @@ public class logout extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void tidakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tidakActionPerformed
@@ -136,6 +138,7 @@ public class logout extends javax.swing.JFrame {
 
     private void yaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yaActionPerformed
         // TODO add your handling code here:
+        new kasir.Statistik().setVisible(false);
         this.setVisible(false);
         new login().setVisible (true);
     }//GEN-LAST:event_yaActionPerformed

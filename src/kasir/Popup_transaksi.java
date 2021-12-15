@@ -79,8 +79,9 @@ public class Popup_transaksi extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         print = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(200, 20));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(210, 230, 252));
         jPanel1.setLayout(null);
@@ -351,6 +352,7 @@ public class Popup_transaksi extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked

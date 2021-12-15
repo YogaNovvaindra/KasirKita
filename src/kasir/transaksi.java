@@ -85,7 +85,9 @@ public class transaksi extends javax.swing.JFrame {
         kd_bar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KasirKita ~ Transaksi");
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(1280, 720));
         jPanel2.setLayout(null);
@@ -440,6 +442,7 @@ public class transaksi extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_prosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prosesActionPerformed
@@ -519,6 +522,7 @@ public class transaksi extends javax.swing.JFrame {
     private void btn_addcartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addcartActionPerformed
         // TODO add your handling code here:
         Double stok = null, jml;
+        String kdbar = null;
         try {
             String sqll = "SELECT jumlah FROM barang where id_barang='"+kd_bar.getText()+"' ;";
             java.sql.Connection conn=(Connection)Config.configDB();
@@ -534,6 +538,48 @@ public class transaksi extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Maaf, Stok tidak Mencukupi");
             jumlah.setText("");
         } else {
+            try {
+            String sqll = "SELECT id_barang FROM cart where id_barang='"+kd_bar.getText()+"' ;";
+            java.sql.Connection conn=(Connection)Config.configDB();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sqll);
+            res.next();
+            kdbar = res.getString("id_barang");
+            } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, e.getMessage());
+            }
+            if (kd_bar.getText().equals(kdbar)) {
+                JOptionPane.showMessageDialog(null, "Barang sudah ada dalam Cart, Maka jumlah barang ditambah");
+                try { 
+                     String sqll = "SELECT harga_jual FROM barang where id_barang='"+kd_bar.getText()+"' ;";
+            java.sql.Connection conn=(Connection)Config.configDB();
+            java.sql.Statement stm=conn.createStatement();
+            java.sql.ResultSet res=stm.executeQuery(sqll);
+            res.next();
+            Double nilai = res.getDouble("harga_jual");
+            String jmll = jumlah.getText();
+            Double juml = Double.parseDouble(jmll);
+            
+            
+            Double total = juml * nilai;
+            
+            String sql = "Update cart set qty=qty+"+jumlah.getText()+", total_harga=total_harga+"+total+" where id_barang='"+kd_bar.getText()+"' ;" ;
+            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
+            pst.execute();
+
+//            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+        load_table();
+        load_table1();
+        tablestyle();
+        grand_total();
+        kosong();
+        jam();
+        tgl();
+        txtcari.setText(null);                
+            } else {
         try {
             String sqll = "SELECT harga_jual FROM barang where id_barang='"+kd_bar.getText()+"' ;";
             java.sql.Connection conn=(Connection)Config.configDB();
@@ -564,6 +610,8 @@ public class transaksi extends javax.swing.JFrame {
         kosong();
         jam();
         tgl();
+        txtcari.setText(null);
+        }
         }
     }//GEN-LAST:event_btn_addcartActionPerformed
 
@@ -580,7 +628,14 @@ public class transaksi extends javax.swing.JFrame {
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
 //        this.setVisible(false);
-        new login.logout().setVisible(true);
+//        new login.logout().setVisible(true);
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            new login.login().setVisible(true);
+        } else if (response == JOptionPane.NO_OPTION) {
+            
+        }
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked

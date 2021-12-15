@@ -76,7 +76,9 @@ public class edit_barang extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KasirKita ~ Edit Barang");
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel2.setLayout(null);
@@ -382,6 +384,7 @@ public class edit_barang extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -395,8 +398,13 @@ public class edit_barang extends javax.swing.JFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-//        this.setVisible(false);
-        new login.logout().setVisible(true);
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            new login.login().setVisible(true);
+        } else if (response == JOptionPane.NO_OPTION) {
+            
+        }
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
@@ -428,6 +436,9 @@ public class edit_barang extends javax.swing.JFrame {
 
     private void btn_tambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahActionPerformed
         // TODO add your handling code here:
+        if (kd_bar.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Masukkan Kode Barang terlebih dahulu");
+        } else {
         try {
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.Statement stm=conn.createStatement();
@@ -448,12 +459,13 @@ public class edit_barang extends javax.swing.JFrame {
             pst.execute();
             
             
-            JOptionPane.showMessageDialog(null, "Penyimpanan Data Berhasil");
+            JOptionPane.showMessageDialog(null, "Data barang "+kd_bar.getText()+" berhasil disimpan");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
         load_table();
         kosong();
+        }
     }//GEN-LAST:event_btn_tambahActionPerformed
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
@@ -474,7 +486,7 @@ public class edit_barang extends javax.swing.JFrame {
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+            JOptionPane.showMessageDialog(null, "Data barang "+kd_bar.getText()+" berhasil diubah");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Perubahan Data gagal " +e.getMessage());
         }
@@ -497,7 +509,7 @@ public class edit_barang extends javax.swing.JFrame {
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(this, "berhasil di hapus");
+            JOptionPane.showMessageDialog(this, "Data barang "+kd_bar.getText()+" berhasil dihapus");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -696,6 +708,7 @@ public class edit_barang extends javax.swing.JFrame {
     jumlah.setText(null);
     satuan.setSelectedItem(null);
     sup.setSelectedItem(null);
+    txtcari.setText(null);
 }
     private String formatRupiah(int value){
     DecimalFormat formater = (DecimalFormat) DecimalFormat.getCurrencyInstance();

@@ -83,14 +83,14 @@ public class riwayat_admin extends javax.swing.JFrame {
         uangjml = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        datesampai = new com.toedter.calendar.JDateChooser();
-        datedari = new com.toedter.calendar.JDateChooser();
         print = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         no_trans = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KasirKita ~ Riwayat");
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setResizable(false);
 
         jPanel2.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel2.setLayout(null);
@@ -369,24 +369,6 @@ public class riwayat_admin extends javax.swing.JFrame {
         jPanel2.add(jLabel5);
         jLabel5.setBounds(850, 490, 360, 233);
 
-        datesampai.setBackground(new java.awt.Color(255, 255, 255));
-        datesampai.setForeground(new java.awt.Color(72, 72, 72));
-        datesampai.setDateFormatString("yyyy-MM-dd");
-        datesampai.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        datesampai.setOpaque(false);
-        jPanel2.add(datesampai);
-        datesampai.setBounds(370, 620, 150, 30);
-        datesampai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        datedari.setBackground(new java.awt.Color(255, 255, 255));
-        datedari.setForeground(new java.awt.Color(72, 72, 72));
-        datedari.setDateFormatString("yyyy-MM-dd");
-        datedari.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        datedari.setOpaque(false);
-        jPanel2.add(datedari);
-        datedari.setBounds(370, 560, 150, 30);
-        datedari.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         print.setBackground(new java.awt.Color(255, 255, 255));
         print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/print_75px.png"))); // NOI18N
         print.setBorder(null);
@@ -418,6 +400,7 @@ public class riwayat_admin extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -430,8 +413,13 @@ public class riwayat_admin extends javax.swing.JFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-//        this.setVisible(false);
-        new login.logout().setVisible(true);
+        int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (response == JOptionPane.YES_OPTION) {
+            this.setVisible(false);
+            new login.login().setVisible(true);
+        } else if (response == JOptionPane.NO_OPTION) {
+            
+        }
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
@@ -646,6 +634,7 @@ public class riwayat_admin extends javax.swing.JFrame {
         datedari.setDate(null);
         datesampai.setDate(null);
         print.setVisible(false);
+        txtcari.setText(null);
     }//GEN-LAST:event_resetActionPerformed
 
     private void printActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printActionPerformed
@@ -903,8 +892,6 @@ private void load_table1() {
     private javax.swing.JButton Tampilkan;
     private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_deleteall;
-    private com.toedter.calendar.JDateChooser datedari;
-    private com.toedter.calendar.JDateChooser datesampai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
