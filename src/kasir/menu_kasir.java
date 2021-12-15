@@ -39,8 +39,6 @@ public class menu_kasir extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("KasirKita ~ Menu Kasir");
-        setResizable(false);
 
         jPanel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel1.setLayout(null);
@@ -50,7 +48,7 @@ public class menu_kasir extends javax.swing.JFrame {
         nama_kasir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/user_40px.png"))); // NOI18N
         nama_kasir.setIconTextGap(20);
         jPanel1.add(nama_kasir);
-        nama_kasir.setBounds(290, 50, 660, 60);
+        nama_kasir.setBounds(290, 50, 600, 60);
 
         kasir4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         kasir4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -155,6 +153,7 @@ public class menu_kasir extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
+//        this.setVisible(false);
         int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             this.setVisible(false);

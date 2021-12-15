@@ -158,7 +158,7 @@ public class login extends javax.swing.JFrame {
                         this.dispose();
                     }
             } else {
-                    JOptionPane.showMessageDialog(null, "id atau password salah");
+                    JOptionPane.showMessageDialog(null, "Username atau Password salah");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

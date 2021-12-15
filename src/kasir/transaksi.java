@@ -168,6 +168,7 @@ public class transaksi extends javax.swing.JFrame {
         btn_proses.setText("Checkout");
         btn_proses.setBorder(null);
         btn_proses.setBorderPainted(false);
+        btn_proses.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_proses.setIconTextGap(2);
         btn_proses.setOpaque(false);
         btn_proses.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +186,7 @@ public class transaksi extends javax.swing.JFrame {
         btn_addcart.setText("Add Cart");
         btn_addcart.setBorder(null);
         btn_addcart.setBorderPainted(false);
+        btn_addcart.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_addcart.setOpaque(false);
         btn_addcart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -394,6 +396,7 @@ public class transaksi extends javax.swing.JFrame {
         btn_delete.setForeground(new java.awt.Color(36, 36, 36));
         btn_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/trash_25px.png"))); // NOI18N
         btn_delete.setBorder(null);
+        btn_delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_delete.setOpaque(false);
         btn_delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -81,9 +81,10 @@ public class Popup_transaksi extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setLocation(new java.awt.Point(200, 20));
+        setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(210, 230, 252));
+        jPanel1.setBackground(new java.awt.Color(160, 201, 246));
         jPanel1.setLayout(null);
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/back_40px.png"))); // NOI18N
@@ -164,7 +165,8 @@ public class Popup_transaksi extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(36, 36, 36));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/logo 75.png"))); // NOI18N
-        jLabel8.setText(" CV. JAYA MAJU");
+        jLabel8.setText("Kasir Kita");
+        jLabel8.setIconTextGap(10);
         jPanel1.add(jLabel8);
         jLabel8.setBounds(15, 10, 460, 75);
 
@@ -200,7 +202,7 @@ public class Popup_transaksi extends javax.swing.JFrame {
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/price_25px.png"))); // NOI18N
         jLabel14.setText("Total Harga");
         jPanel1.add(jLabel14);
-        jLabel14.setBounds(160, 510, 130, 30);
+        jLabel14.setBounds(170, 510, 110, 30);
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(36, 36, 36));
@@ -238,7 +240,7 @@ public class Popup_transaksi extends javax.swing.JFrame {
         jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/money_25px.png"))); // NOI18N
         jLabel20.setText("Bayar");
         jPanel1.add(jLabel20);
-        jLabel20.setBounds(210, 550, 80, 30);
+        jLabel20.setBounds(210, 550, 70, 30);
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(36, 36, 36));
@@ -262,7 +264,7 @@ public class Popup_transaksi extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
-        jPanel3.setBounds(580, 590, 20, 10);
+        jPanel3.setBounds(570, 590, 20, 10);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setMinimumSize(new java.awt.Dimension(260, 5));
@@ -287,7 +289,7 @@ public class Popup_transaksi extends javax.swing.JFrame {
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/coin_in_hand_25px.png"))); // NOI18N
         jLabel22.setText("Kembalian");
         jPanel1.add(jLabel22);
-        jLabel22.setBounds(170, 610, 120, 30);
+        jLabel22.setBounds(180, 610, 102, 30);
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(36, 36, 36));
@@ -325,7 +327,7 @@ public class Popup_transaksi extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/barpopup.png"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, -10, 600, 110);
+        jLabel1.setBounds(-20, 0, 660, 110);
 
         print.setBackground(new java.awt.Color(255, 255, 255));
         print.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/print_75px.png"))); // NOI18N

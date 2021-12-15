@@ -89,6 +89,7 @@ public class Statistik extends javax.swing.JFrame {
         btn_phone.setForeground(new java.awt.Color(36, 36, 36));
         btn_phone.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/phone_25px.png"))); // NOI18N
         btn_phone.setBorder(null);
+        btn_phone.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btn_phone.setOpaque(false);
         btn_phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
