@@ -40,9 +40,13 @@ public class menu_admin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("KasirKita ~ Menu Admin");
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setSize(new java.awt.Dimension(1280, 720));
 
-        jPanel1.setMinimumSize(new java.awt.Dimension(1366, 768));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 720));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 720));
         jPanel1.setLayout(null);
 
         nama_admin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -151,7 +155,6 @@ public class menu_admin extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
-//        this.setVisible(false);
         int response = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin Keluar?", "Konfirmasi Keluar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (response == JOptionPane.YES_OPTION) {
             this.setVisible(false);

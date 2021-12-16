@@ -514,8 +514,13 @@ public class transaksi extends javax.swing.JFrame {
         popup.gtot.setText(g_total.getText());
         popup.bayarp.setText(bayar.getText());
         popup.balik.setText(balika); 
+        this.dispose();
+        this.setVisible(true);
+        grand_total();
+        nama.setText(null);
+        bayar.setText(null);
         popup.setVisible(true);
-//        this.dispose();
+        
         }
         }
         }

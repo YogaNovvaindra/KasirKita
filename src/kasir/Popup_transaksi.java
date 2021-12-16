@@ -359,10 +359,10 @@ public class Popup_transaksi extends javax.swing.JFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-        kasir.transaksi nama= new kasir.transaksi();
-        nama.namakasir.setText(namaPegawai.getText());
-         
-        nama.setVisible(true);
+//        kasir.transaksi nama= new kasir.transaksi();
+//        nama.namakasir.setText(namaPegawai.getText());
+//         
+//        nama.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
