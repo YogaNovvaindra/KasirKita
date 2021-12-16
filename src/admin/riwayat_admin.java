@@ -494,14 +494,14 @@ public class riwayat_admin extends javax.swing.JFrame {
     
     try {
         int no=1;
-        String sql = "SELECT* from tranksaksi where id_tranksaksi like '%" + txtcari.getText() + "%'"  ;
+        String sql = "SELECT* from tranksaksi where nama_pembeli like '%" + txtcari.getText() + "%'"  ;
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
         java.sql.ResultSet res=stm.executeQuery(sql);
         while(res.next()){
             model.addRow (new Object[] {no++,res.getString(1),
                 res.getString(2),res.getString(3),this.formatRupiah(res.getInt(4)).replace(",00", ""),
-                res.getString(5),res.getString(6)
+                res.getString(5),res.getString(8)
             });
         }
         jTable1.setModel(model);

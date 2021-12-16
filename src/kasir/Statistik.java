@@ -641,7 +641,7 @@ public class Statistik extends javax.swing.JFrame {
     try {
         int no=1;
         String sql = "SELECT * from tranksaksi "
-                + "where tanggal_tranksaksi='"+a+"' && id_tranksaksi LIKE '%"+txtcaritrans.getText()+"%' ;";
+                + "where tanggal_tranksaksi='"+a+"' && nama_pembeli LIKE '%"+txtcaritrans.getText()+"%' ;";
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
         java.sql.ResultSet res=stm.executeQuery(sql);

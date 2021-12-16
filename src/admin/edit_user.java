@@ -7,7 +7,6 @@ package admin;
 
 
 
-import java.awt.Color;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -91,7 +90,7 @@ public class edit_user extends javax.swing.JFrame {
         namaAdmin1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         namaAdmin1.setForeground(new java.awt.Color(36, 36, 36));
         jPanel2.add(namaAdmin1);
-        namaAdmin1.setBounds(70, 60, 160, 50);
+        namaAdmin1.setBounds(70, 60, 150, 50);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(36, 36, 36));
@@ -344,23 +343,24 @@ public class edit_user extends javax.swing.JFrame {
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         // TODO add your handling code here:
-        if (txtnama.getText().equals("")) {
+        if (txtuser.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "pilih dahulu data yang ingin dihapus");
+        } else { 
+            if (txtuser.getText().equals(namaAdmin1.getText())) {
+                JOptionPane.showMessageDialog(this, "Tidak dapat dihapus! \nAnda sedang login dengan user tersebut");
         } else {
-        try {
+                try {
             String sql ="DELETE FROM anggota where id_pengguna='"+txtuser.getText()+"'";
-            String sqll ="DELETE FROM akun where id_pengguna='"+txtuser.getText()+"'";
         java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-            java.sql.PreparedStatement pstl=conn.prepareStatement(sqll);
             pst.execute();
-            pstl.execute();
             JOptionPane.showMessageDialog(this, "Data User dengan ID "+txtuser.getText()+" berhasil dihapus");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         } 
         load_table();
         kosong();
+                }
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
 
@@ -372,15 +372,11 @@ public class edit_user extends javax.swing.JFrame {
             String hp=txthp.getText();
         if (hp.matches("^[0-9]*") && hp.length()==12){
         try {
-            String sql = "INSERT INTO akun VALUES ('"+txtuser.getText()+"','"
-                    +txtpw.getText()+"')";
             String sqll = "INSERT INTO anggota VALUES ('"+txtuser.getText()+"','"
                     +txtnama.getText()+"','"+txtalamat.getText()+"','"+
-                    txthp.getText()+"','"+jComboBox1.getSelectedItem()+"')";
+                    txthp.getText()+"','"+jComboBox1.getSelectedItem()+"','"+txtpw.getText()+"')";
             java.sql.Connection conn=(Connection)Config.configDB();
-            java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             java.sql.PreparedStatement pstl=conn.prepareStatement(sqll);
-            pst.execute();
             pstl.execute();
             JOptionPane.showMessageDialog(null, "Data User dengan ID "+txtuser.getText()+" berhasil disimpan");
         } catch (Exception e) {
@@ -402,7 +398,7 @@ public class edit_user extends javax.swing.JFrame {
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
         admin.menu_admin namaAdmin = new admin.menu_admin();
-        namaAdmin.nama_admin.setText(namaAdmin1.getText());
+        namaAdmin.nama_admin.setText(this.namaAdmin1.getText());
         namaAdmin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
@@ -421,7 +417,7 @@ public class edit_user extends javax.swing.JFrame {
     private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
         // TODO add your handling code here:
         admin.edit_barang namaAdmin = new admin.edit_barang();
-        namaAdmin.namaAdmin1.setText(namaAdmin1.getText());
+        namaAdmin.namaAdmin1.setText(this.namaAdmin1.getText());
         namaAdmin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel20MouseClicked
@@ -429,7 +425,7 @@ public class edit_user extends javax.swing.JFrame {
     private void jLabel21MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel21MouseClicked
         // TODO add your handling code here:
         admin.edit_supplier namaAdmin = new admin.edit_supplier();
-        namaAdmin.namaAdmin1.setText(namaAdmin1.getText());
+        namaAdmin.namaAdmin1.setText(this.namaAdmin1.getText());
         namaAdmin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel21MouseClicked
@@ -437,7 +433,7 @@ public class edit_user extends javax.swing.JFrame {
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
         // TODO add your handling code here:
         admin.riwayat_admin namaAdmin = new admin.riwayat_admin();
-        namaAdmin.namaAdmin1.setText(namaAdmin1.getText());
+        namaAdmin.namaAdmin1.setText(this.namaAdmin1.getText());
         namaAdmin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel18MouseClicked
@@ -450,19 +446,13 @@ public class edit_user extends javax.swing.JFrame {
             String hp=txthp.getText();
         if (hp.matches("^[0-9]*") && hp.length()==12){
         try {
-            String sql ="UPDATE anggota INNER JOIN akun ON akun.id_pengguna = anggota.id_pengguna "
-                    + "SET nama_anggota = '"+txtnama.getText()+"', alamat_anggota = '"
+            String sql ="UPDATE anggota SET nama_anggota = '"+txtnama.getText()+"', alamat_anggota = '"
                     +txtalamat.getText()+"', telp_anggota = '"
-                    +txthp.getText()+"', tipe_anggota = '"+jComboBox1.getSelectedItem()
-                    +"'WHERE anggota.id_pengguna = '"+txtuser.getText()+"'";
-            String sqll ="UPDATE akun INNER JOIN anggota ON akun.id_pengguna = anggota.id_pengguna "
-                    +"SET akun.password = '"+txtpw.getText()
-                    +"' WHERE akun.id_pengguna = '"+txtuser.getText()+"';";
+                    +txthp.getText()+"', tipe_anggota = '"+jComboBox1.getSelectedItem()+"', password = '"+txtpw.getText()
+                    +"' WHERE anggota.id_pengguna = '"+txtuser.getText()+"'";
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
-            java.sql.PreparedStatement pstl=conn.prepareStatement(sqll);
             pst.execute();
-            pstl.execute();
             JOptionPane.showMessageDialog(null, "Data User dengan ID "+txtuser.getText()+" berhasil diubah");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Perubahan Data gagal " +e.getMessage());
@@ -526,9 +516,9 @@ public class edit_user extends javax.swing.JFrame {
     
     try {
         int no=1;
-        String sql = "select anggota.id_pengguna, anggota.nama_anggota, anggota.alamat_anggota,"
-                + " anggota.telp_anggota, anggota.tipe_anggota, akun.password"
-                + " from anggota join akun on anggota.id_pengguna = akun.id_pengguna "
+        String sql = "select id_pengguna, nama_anggota, alamat_anggota,"
+                + " telp_anggota, tipe_anggota, password"
+                + " from anggota "
                 + "where nama_anggota like '%" + txtcari.getText() + "%'"  ;
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
@@ -576,9 +566,9 @@ public class edit_user extends javax.swing.JFrame {
     
     try {
         int no=1;
-        String sql = "select anggota.id_pengguna, anggota.nama_anggota, anggota.alamat_anggota,"
-                + " anggota.telp_anggota, anggota.tipe_anggota, akun.password"
-                + " from anggota join akun on anggota.id_pengguna = akun.id_pengguna ;";
+        String sql = "select id_pengguna, nama_anggota, alamat_anggota,"
+                + " telp_anggota, tipe_anggota, password"
+                + " from anggota ;";
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
         java.sql.ResultSet res=stm.executeQuery(sql);

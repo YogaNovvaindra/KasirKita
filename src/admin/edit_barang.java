@@ -478,7 +478,7 @@ public class edit_barang extends javax.swing.JFrame {
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             pst.execute();
-            JOptionPane.showMessageDialog(null, "Data barang "+kd_bar.getText()+" berhasil diubahn");
+            JOptionPane.showMessageDialog(null, "Data barang "+kd_bar.getText()+" berhasil diubah");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Perubahan Data gagal " +e.getMessage());
         }

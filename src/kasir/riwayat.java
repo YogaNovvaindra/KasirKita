@@ -51,6 +51,7 @@ public class riwayat extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        printulang = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -123,6 +124,21 @@ public class riwayat extends javax.swing.JFrame {
         });
         jPanel2.add(jLabel20);
         jLabel20.setBounds(40, 250, 60, 50);
+
+        printulang.setBackground(new java.awt.Color(255, 255, 255));
+        printulang.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        printulang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/print_25px.png"))); // NOI18N
+        printulang.setText("Cetak Ulang Struk");
+        printulang.setBorder(null);
+        printulang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        printulang.setOpaque(false);
+        printulang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printulangActionPerformed(evt);
+            }
+        });
+        jPanel2.add(printulang);
+        printulang.setBounds(370, 140, 140, 30);
 
         jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -443,6 +459,7 @@ public class riwayat extends javax.swing.JFrame {
         int baris = jTable1.rowAtPoint(evt.getPoint());
         String id = jTable1.getValueAt(baris, 1).toString();
         no_trans.setText(id);
+        printulang.setVisible(true);
         load_table1();
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -466,14 +483,14 @@ public class riwayat extends javax.swing.JFrame {
     
     try {
         int no=1;
-        String sql = "SELECT * from tranksaksi where id_tranksaksi like '%" + txtcari.getText() + "%'"  ;
+        String sql = "SELECT * from tranksaksi where nama_pembeli like '%" + txtcari.getText() + "%'"  ;
         java.sql.Connection conn=(Connection)Config.configDB();
         java.sql.Statement stm=conn.createStatement();
         java.sql.ResultSet res=stm.executeQuery(sql);
         while(res.next()){
             model.addRow (new Object[] {no++,res.getString(1),
                 res.getString(2),res.getString(3), this.formatRupiah(res.getInt(4)).replace(",00", ""),
-                res.getString(5),res.getString(6)
+                res.getString(5),res.getString(8)
             });
         }
         jTable1.setModel(model);
@@ -598,6 +615,7 @@ public class riwayat extends javax.swing.JFrame {
         datedari.setDate(null);
         datesampai.setDate(null);
         print.setVisible(false);
+        printulang.setVisible(false);
         txtcari.setText(null);
     }//GEN-LAST:event_resetActionPerformed
 
@@ -626,6 +644,25 @@ public class riwayat extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_printActionPerformed
+
+    private void printulangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printulangActionPerformed
+        // TODO add your handling code here:
+        try {
+        java.sql.Connection conn=(Connection)Config.configDB();
+//        String namafile = "src/kasir/report.jrxml";
+        InputStream report = getClass().getResourceAsStream("report.jasper");
+        HashMap param = new HashMap();
+        param.put("kd_trans",no_trans.getText());
+//        File file = new File(namafile);
+//        JasperDesign jd = JRXmlLoader.load(namafile);
+//        JasperReport jr = JasperCompileManager.compileReport(jd);
+        JasperPrint jp = JasperFillManager.fillReport(report,param,conn);
+        JasperViewer.viewReport(jp, false);
+        } catch(Exception e) {
+            e.printStackTrace();
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_printulangActionPerformed
     private void tablestyle() {
         JTableHeader style = jTable1.getTableHeader();
         jTable1.setRowHeight(25);
@@ -686,6 +723,7 @@ public class riwayat extends javax.swing.JFrame {
     }
     tablestyle();
     print.setVisible(false);
+    printulang.setVisible(false);
 }
 private void load_table1() {
     DefaultTableModel model = new DefaultTableModel();
@@ -826,6 +864,7 @@ private void load_table1() {
     public javax.swing.JLabel namakasir;
     private javax.swing.JTextField no_trans;
     private javax.swing.JButton print;
+    private javax.swing.JButton printulang;
     private javax.swing.JButton reset;
     private javax.swing.JLabel transjml;
     private javax.swing.JTextField txtcari;

@@ -130,31 +130,26 @@ public class login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     try { 
-            String sql = "SELECT akun.id_pengguna, anggota.nama_anggota, akun.password, anggota.tipe_anggota"
-                    + " FROM akun JOIN anggota ON akun.id_pengguna = anggota.id_pengguna"
-                    + " WHERE akun.id_pengguna='"+name.getText()
-                    +"'AND akun.password='"+password.getText()+ "'";
+            String sql = "SELECT id_pengguna, password, tipe_anggota"
+                    + " FROM anggota"
+                    + " WHERE id_pengguna='"+name.getText()
+                    +"'AND password='"+password.getText()+ "'";
             java.sql.Connection conn=(Connection)Config.configDB();
             java.sql.PreparedStatement pst=conn.prepareStatement(sql);
             java.sql.ResultSet rs = pst.executeQuery(sql);
             if (rs.next()){
                     String user_tipe = rs.getString("tipe_anggota");
-//                    JOptionPane.showMessageDialog(null, "Berhasil Login");
                     this.setVisible(false);
                     kasir.menu_kasir nama= new kasir.menu_kasir();
-                   
                     admin.menu_admin namaAdmin = new admin.menu_admin();
                     if(user_tipe.equals("admin")){
                         namaAdmin.nama_admin.setText(rs.getString("id_pengguna"));
                         namaAdmin.setVisible(true);
-//                        new admin.menu_admin().setVisible(true);
-                        this.dispose();
-                        
+                        this.dispose();     
                     } else if (user_tipe.equals("kasir")){
                         nama.nama_kasir.setText(rs.getString("id_pengguna"));
                         
                         nama.setVisible(true);
-//                        new kasir.menu_kasir().setVisible(true);
                         this.dispose();
                     }
             } else {
